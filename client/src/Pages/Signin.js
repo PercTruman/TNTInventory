@@ -19,7 +19,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+      Shawn Hart
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -41,11 +41,12 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="750px">
         <CssBaseline />
         <Box
+      
           sx={{
-            marginTop: 8,
+            marginTop: '60%',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -54,13 +55,14 @@ export default function SignIn() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h2">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box  width={'800px'} component="form" justifyContent={'space-evenly'} onSubmit={handleSubmit} noValidate sx={{ mt: 6 }}>
             <TextField
               margin="normal"
               required
+              sx={{height:'100px'}}
               fullWidth
               id="email"
               label="Email Address"
@@ -86,7 +88,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 6, mb: 6}}
             >
               Sign In
             </Button>
@@ -97,7 +99,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="./-signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
