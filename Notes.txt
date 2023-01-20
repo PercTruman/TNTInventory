@@ -1,0 +1,16 @@
+User can add a case to a Pod
+User can delete a case from Pod
+User can update the nunmber of cases in a Pod
+user can see how many cases (of a given type) are in a Pod
+
+user (admins) can create an order
+users (admin or non) can update an order
+users (admin or non) can delete an order
+users (admin or non) can see orders
+
+user has many orders
+pods have many cases
+a case belongs to a Pod
+an order has many cases
+cases have many fireworks
+fireworks belong to a case
