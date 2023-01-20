@@ -1,7 +1,8 @@
 import React, {useState, useRef} from 'react';
+import Navbar from '../Components/Navbar';
 import Scanner from '../Components/Scanner';
 import Result from '../Components/Result';
-
+import OrderSnackbar from '../Components/OrderSnackbar';
 const Orders = () => {
     const [scanning, setScanning] = useState(false);
     const [results, setResults] = useState([]);
@@ -9,6 +10,7 @@ const Orders = () => {
 
     return (
         <div>
+            <Navbar/>
             <button onClick={() => setScanning(!scanning) }>{scanning ? 'Stop' : 'Start'}</button>
             <ul className="results">
                 {results.map((result) => (result.codeResult && <Result key={result.codeResult.code} result={result} />))}
@@ -25,6 +27,7 @@ const Orders = () => {
                 }} width="640" height="480" />
                 {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) => setResults([...results, result])} /> : null}
             </div>
+            <OrderSnackbar/>
         </div>
     );
 };
