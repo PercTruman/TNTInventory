@@ -42,7 +42,7 @@ export default function SimpleSnackbar() {
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        message="Note archived"
+        message="Order created"
         action={action}
       />
     </div>

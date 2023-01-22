@@ -1,4 +1,6 @@
-import * as React from 'react';
+import  React, {useState, useContext} from 'react';
+import { UserContext } from '../Components/UserContext';
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -34,14 +36,36 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+    const navigate = useNavigate();
+	const { login } = useContext(UserContext);
+	const [formData, setFormData] = useState({
+		username: '',
+		password: '',
+	});
+
+    const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-		console.log({
-			email: data.get('email'),
-			password: data.get('password'),
+        fetch('/login', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(formData),
+		}).then((res) => {
+			if (res.ok) {
+				res.json().then((user) => {
+					login(user);
+					navigate('/-orders');
+				});
+			} else {
+				res.json().then((errors) => {
+					alert(errors.error);
+				});
+			}
 		});
 	};
+	
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -81,6 +105,8 @@ export default function SignIn() {
 							name='email'
 							autoComplete='email'
 							autoFocus
+                            onChange={handleChange}
+
 						/>
 						<TextField
 							margin='normal'
@@ -91,6 +117,8 @@ export default function SignIn() {
 							type='password'
 							id='password'
 							autoComplete='current-password'
+                            onChange={handleChange}
+
 						/>
 						<FormControlLabel
 							control={<Checkbox value='remember' color='primary' />}
@@ -101,6 +129,7 @@ export default function SignIn() {
 							fullWidth
 							variant='contained'
 							sx={{ mt: 6, mb: 6 }}
+                            onClick={handleSubmit}
 						>
 							Sign In
 						</Button>

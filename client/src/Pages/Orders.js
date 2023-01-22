@@ -3,6 +3,7 @@ import Navbar from '../Components/Navbar';
 import Scanner from '../Components/Scanner';
 import Result from '../Components/Result';
 import OrderSnackbar from '../Components/OrderSnackbar';
+import SwipeableTemporaryDrawer from '../Components/SwipeableDrawer';
 const Orders = () => {
     const [scanning, setScanning] = useState(false);
     const [results, setResults] = useState([]);
@@ -11,6 +12,7 @@ const Orders = () => {
     return (
         <div>
             <Navbar/>
+            <SwipeableTemporaryDrawer/>
             <button onClick={() => setScanning(!scanning) }>{scanning ? 'Stop' : 'Start'}</button>
             <ul className="results">
                 {results.map((result) => (result.codeResult && <Result key={result.codeResult.code} result={result} />))}
