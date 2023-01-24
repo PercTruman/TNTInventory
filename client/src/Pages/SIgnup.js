@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../Components/UserContext';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -27,16 +29,35 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const { signup} = useContext(UserContext);
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
 		username: '',
 		password: '',
 	});
+
+  const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    fetch("/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: formData.username,
+        password: formData.password
+      }),
+    })
+    .then((res) => res.json())
+    .then((user) => {
+      if (!user.errors) {
+        signup(user);
+        navigate("/-orders");
+      } else {
+       alert(user.errors)
+      }
     });
   };
 
@@ -68,7 +89,9 @@ export default function SignUp() {
                   id="username"
                   label="Username"
                   name="username"
+                  value={formData.username}
                   autoComplete="username"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -78,8 +101,10 @@ export default function SignUp() {
                   name="password"
                   label="Password"
                   type="password"
+                  value={formData.password}
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>

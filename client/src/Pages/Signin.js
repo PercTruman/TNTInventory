@@ -37,7 +37,7 @@ const theme = createTheme();
 
 export default function SignIn() {
     const navigate = useNavigate();
-	const { login } = useContext(UserContext);
+	const { login, user } = useContext(UserContext);
 	const [formData, setFormData] = useState({
 		username: '',
 		password: '',
@@ -101,12 +101,13 @@ export default function SignIn() {
 							sx={{ height: '100px' }}
 							fullWidth
 							id='email'
-							label='Email Address'
-							name='email'
-							autoComplete='email'
+							label='Username'
+							name='username'
+							autoComplete='username'
 							autoFocus
                             onChange={handleChange}
 
+                            value={formData.username}
 						/>
 						<TextField
 							margin='normal'
@@ -118,6 +119,7 @@ export default function SignIn() {
 							id='password'
 							autoComplete='current-password'
                             onChange={handleChange}
+                            value={formData.password}
 
 						/>
 						<FormControlLabel
