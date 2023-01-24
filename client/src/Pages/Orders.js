@@ -18,16 +18,16 @@ console.log(user)
           
             <Button variant="contained" onClick={() => setScanning(!scanning) }>{scanning ? 'Stop Scan' : 'Start Scan'}</Button>
            
-            <div ref={scannerRef} style={{position: 'relative', marginTop: '5rem', border: '3px solid red'}}>
+            <div ref={scannerRef} style={{position: 'relative', marginTop: '5rem'}}>
                 {/* <video style={{ width: window.innerWidth, height: 480, border: '3px solid orange' }}/> */}
                 <canvas className="drawingBuffer" style={{
                     margin: '0 auto',
-                    // position: 'absolute',
+                    position: 'absolute',
                     // top: '0px',
                     // left: '0px',
                     // height: '100%',
                     // width: '100%',
-                    border: '3px solid green',
+                   
                 }} width="480" height="240" />
                 {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) => setResults([...results, result])} /> : null}
             </div>
