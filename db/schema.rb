@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_27_215915) do
+ActiveRecord::Schema.define(version: 2023_02_10_175235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_215915) do
     t.integer "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "quantity_in_pod"
+    t.string "firework_name"
   end
 
   create_table "fireworks", force: :cascade do |t|
@@ -31,6 +31,21 @@ ActiveRecord::Schema.define(version: 2023_01_27_215915) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "quantity_per_case"
     t.integer "case_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "quantity"
+    t.string "jde_number"
+    t.boolean "is_fulfilled"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pods", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "number"
   end
 
   create_table "users", force: :cascade do |t|

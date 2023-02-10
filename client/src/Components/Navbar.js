@@ -40,6 +40,16 @@ function SmallNavbar() {
                 >
                     Find Fireworks
                 </Button>
+                <Button
+                    onClick={() => navigate('/-pods')}
+                    sx={{
+                        my: 2,
+                        color: 'white',
+                        display: 'block',
+                    }}
+                >
+                    Pods
+                </Button>
             </Box>
         </Toolbar>
     </AppBar>
