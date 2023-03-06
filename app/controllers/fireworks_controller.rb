@@ -3,7 +3,11 @@ class FireworksController < ApplicationController
     def create
         f = Firework.create!(firework_params)
         render json: f, status: :created
+    end
 
+    def index
+        fireworks = Firework.all 
+        render json: fireworks, status: :ok
     end
 
     private

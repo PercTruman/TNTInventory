@@ -37,7 +37,7 @@ const theme = createTheme();
 
 export default function SignIn() {
     const navigate = useNavigate();
-	const { login, user } = useContext(UserContext);
+	const { login} = useContext(UserContext);
 	const [formData, setFormData] = useState({
 		username: '',
 		password: '',

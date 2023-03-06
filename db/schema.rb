@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_10_175235) do
+ActiveRecord::Schema.define(version: 2023_02_10_175858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 2023_02_10_175235) do
     t.string "jde_number"
     t.boolean "is_fulfilled"
     t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pod_cases", force: :cascade do |t|
+    t.integer "pod_id"
+    t.integer "case_id"
+    t.integer "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

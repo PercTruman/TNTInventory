@@ -8,8 +8,6 @@ until (num == 11) do
     num +=1 
 
 end
-
-
 p "built #{Pod.count} pods"
 
 CSV.foreach( 'lib/tasks/cases.csv', headers: true, :encoding => 'ISO-8859-1') do  |row|
@@ -21,7 +19,6 @@ CSV.foreach( 'lib/tasks/cases.csv', headers: true, :encoding => 'ISO-8859-1') do
     #  order_id: 1
      ) 
  end
- 
  p "loaded #{Case.count} cases"
 
  CSV.foreach( 'lib/tasks/firework_database_with_headers.csv', headers: true, :encoding => 'ISO-8859-1') do  |row|
@@ -32,6 +29,4 @@ CSV.foreach( 'lib/tasks/cases.csv', headers: true, :encoding => 'ISO-8859-1') do
     case_id: 1
     ) 
 end
-
-
 p "loaded #{Firework.count} fireworks"
